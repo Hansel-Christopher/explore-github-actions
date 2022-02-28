@@ -28,6 +28,6 @@ jobs:
         path: test-app 
     
     - name: Create a release
-      run: hub release create -a test-app --draft
+      run: hub release create -a test-app -m InitialRelease $GITHUB_RUN_ID 
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
