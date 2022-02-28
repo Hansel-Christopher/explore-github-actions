@@ -26,3 +26,8 @@ jobs:
       with:
         name: test-app
         path: test-app 
+    
+    - name: Create a release
+      run: hub release create -a test-app --draft
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
