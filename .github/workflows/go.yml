@@ -18,7 +18,7 @@ jobs:
       with:
         go-version: 1.17
 
-    - name: Build
+    - name: Build stage
       run: go build -v ./... -o $GITHUB_WORKSPACE/test-app
     
   upload:
