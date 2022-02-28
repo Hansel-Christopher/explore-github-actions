@@ -18,14 +18,11 @@ jobs:
       with:
         go-version: 1.17
 
-    - name: Build stage
-      run: go build -o $GITHUB_WORKSPACE/test-app -v ./... 
-    
-  upload:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - uses:  actions/upload-artifact@v2
+    - name: Build
+      run: go build -o test-app -v ./... 
+
+    - name: Upload artifact
+      uses:  actions/upload-artifact@v2
       with:
         name: test-app
-        path: $GITHUB_WORKSPACE/test-app 
+        path: test-app 
