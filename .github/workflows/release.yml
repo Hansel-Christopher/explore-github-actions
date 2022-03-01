@@ -2,7 +2,7 @@ name: Go
 
 on:
   push:
-    branches: [ main ]  
+    branches: [ 'releases/**' ]  
 
 jobs:
   create-build-artifact:
@@ -14,15 +14,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
-    - name: Display structure of downloaded files
-      run: ls -R
-      
     - name: Get artifact
       uses: actions/download-artifact@v2
       with:
         name: ${{ needs.create-build-artifact.outputs.artifact_name }} 
 
     - name: Create a release
-      run: hub release create -a ${{ needs.create-build-artifact.outputs.artifact_name }} -m InitialRelease $GITHUB_RUN_ID 
+      run: hub release create -a ${{ needs.create-build-artifact.outputs.artifact_name }} -m $GITHUB_REF_NAME $GITHUB_RUN_ID 
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
