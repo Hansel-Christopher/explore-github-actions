@@ -21,11 +21,13 @@ jobs:
     - name: Build
       run: go build -v ./... 
 
+    - run: ls -R
+
     - name: Upload artifact
       uses:  actions/upload-artifact@v2
       with:
         name: test-app
-        path: ./test-app
+        path: ./test-app                
 
   release:
     runs-on: ubuntu-latest
