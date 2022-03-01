@@ -18,18 +18,14 @@ jobs:
       with:
         go-version: 1.17
 
-    - run: mkdir -p $RUNNER_TEMP/artifacts/
-
     - name: Build
-      run: go build -o $RUNNER_TEMP/artifacts/test-app
-
-    -run: ls -R $RUNNER_TEMP/artifacts/
+      run: go build -o test-app -v ./... 
 
     - name: Upload artifact
       uses:  actions/upload-artifact@v2
       with:
-        name: test-app
-        path: $RUNNER_TEMP/artifacts/*
+        name: test-cli-app
+        path: test-app/test-app
 
   release:
     runs-on: ubuntu-latest
@@ -43,9 +39,9 @@ jobs:
     - name: Get artifact
       uses: actions/download-artifact@v2
       with:
-        name: test-app
+        name: test-cli-app
 
     - name: Create a release
-      run: hub release create -a test-app -m InitialRelease $GITHUB_RUN_ID 
+      run: hub release create -a test-cli-app -m InitialRelease $GITHUB_RUN_ID 
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
