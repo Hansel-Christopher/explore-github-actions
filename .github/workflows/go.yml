@@ -10,8 +10,7 @@ on:
     outputs:
       artifact_name:
         description: "The name of the artifact"
-        value: ${{ env.artifact_name }}
-
+        value: ${{ jobs.build.outputs.artifact_name }}
 
 jobs:
 
@@ -37,3 +36,6 @@ jobs:
       with:
         name: ${{ env.artifact_name }}
         path: /home/runner/work/_temp/artifacts/*
+    
+    outputs:
+      artifact_name: ${{ env.artifact_name }}
