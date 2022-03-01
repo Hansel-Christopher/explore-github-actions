@@ -21,14 +21,11 @@ jobs:
     - name: Build
       run: go build -o $RUNNER_TEMP/test-app
 
-    - name: Build
-      run: go build -o /tmp/test-app
-
     - name: Upload artifact
       uses:  actions/upload-artifact@v2
       with:
         name: test-app
-        path: $RUNNER_TEMP/
+        path: $RUNNER_TEMP/test-app
 
   release:
     runs-on: ubuntu-latest
