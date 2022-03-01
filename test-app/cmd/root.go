@@ -18,6 +18,7 @@ package cmd
 import (
 	"fmt"
 	"os"
+
 	"github.com/spf13/cobra"
 
 	"github.com/spf13/viper"
@@ -33,7 +34,7 @@ var rootCmd = &cobra.Command{
 examples and usage of using your application. For example:
 
 Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
+This is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
