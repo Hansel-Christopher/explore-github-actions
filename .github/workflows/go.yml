@@ -24,16 +24,11 @@ jobs:
     - name: Build
       run: go build -o /tmp/test-app
 
-    - run: ls -R $RUNNER_TEMP
-    - run: ls -R /tmp
-    - run: pwd $RUNNER_TEMP
-    - run: pwd /tmp
-
     - name: Upload artifact
       uses:  actions/upload-artifact@v2
       with:
         name: test-app
-        path: $RUNNER_TEMP/test-app
+        path: $RUNNER_TEMP/
 
   release:
     runs-on: ubuntu-latest
