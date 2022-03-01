@@ -2,17 +2,20 @@ name: Go
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main ]  
 
+env:
+  artifact_name: test-app
 
 jobs:
-
   create-build-artifact:
     uses: ./.github/workflows/go.yml
+    with:
+      artifact_name: ${{ env.artifact_name }}
 
   release:
     runs-on: ubuntu-latest
-    needs: build
+    needs: create-build-artifact
     steps:
     - uses: actions/checkout@v2
     
@@ -22,9 +25,9 @@ jobs:
     - name: Get artifact
       uses: actions/download-artifact@v2
       with:
-        name: test-app
+        name: ${{ env.artifact_name }}
 
     - name: Create a release
-      run: hub release create -a test-app -m InitialRelease $GITHUB_RUN_ID 
+      run: hub release create -a  -m InitialRelease $GITHUB_RUN_ID 
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
