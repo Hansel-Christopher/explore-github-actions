@@ -24,8 +24,8 @@ jobs:
     - name: Upload artifact
       uses:  actions/upload-artifact@v2
       with:
-        name: test-app
-        path: test-app 
+        name: test-cli-app
+        path: test-app/test-app
 
   release:
     runs-on: ubuntu-latest
@@ -33,15 +33,15 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
-    # - name: Display structure of downloaded files
-    #   run: ls -R
-
-    # - name: Get artifact
-    #   uses: actions/download-artifact@v2
-    #   with:
-    #     name: test-app 
+    - name: Display structure of downloaded files
+      run: ls -R
+      
+    - name: Get artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: test-cli-app
 
     - name: Create a release
-      run: hub release create -a test-app -m InitialRelease $GITHUB_RUN_ID 
+      run: hub release create -a test-cli-app -m InitialRelease $GITHUB_RUN_ID 
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
