@@ -18,13 +18,16 @@ jobs:
       with:
         go-version: 1.17
 
+    - run: mkdir -p /artifacts
+
     - name: Build
-      run: go build -v ./... 
+      run: go build -o artifacts/ -v ./... 
 
     - name: Upload artifact
       uses:  actions/upload-artifact@v2
       with:
         name: test-app
+        path: artifacts/test-app
 
   release:
     runs-on: ubuntu-latest
