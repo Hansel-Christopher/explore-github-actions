@@ -18,7 +18,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: ${{ needs.create-build-artifact.outputs.artifact_name }} 
-        path: ${{ runner.temp }}/artifacts/*
+        path: ${{ runner.temp }}/artifacts
 
     - name: Create a release
       run: gh release create $GITHUB_RUN_ID ${{ needs.create-build-artifact.outputs.artifact_name }} -t $GITHUB_REF_NAME ${{ runner.temp }}/artifacts/*
