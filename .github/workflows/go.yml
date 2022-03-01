@@ -23,7 +23,7 @@ jobs:
     - name: Build
       run: go build -o $RUNNER_TEMP/artifacts/test-app
 
-    -run: ls -R $RUNNER_TEMP/artifacts/
+    - run: ls -R $RUNNER_TEMP/artifacts/
 
     - name: Upload artifact
       uses:  actions/upload-artifact@v2
