@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - run: mkdir -p /artifacts
+    - run: mkdir -p $RUNNER_TEMP/artifacts
 
     - name: Set up Go
       uses: actions/setup-go@v2
@@ -21,13 +21,13 @@ jobs:
         go-version: 1.17
 
     - name: Build
-      run: go build -o artifacts/ -v ./... 
+      run: go build -o $RUNNER_TEMP/artifacts/ -v ./... 
 
     - name: Upload artifact
       uses:  actions/upload-artifact@v2
       with:
         name: test-app
-        path: artifacts/test-app
+        path: $RUNNER_TEMP/artifacts/test-app
 
   release:
     runs-on: ubuntu-latest
