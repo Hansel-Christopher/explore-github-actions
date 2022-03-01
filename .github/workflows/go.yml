@@ -19,9 +19,7 @@ jobs:
         go-version: 1.17
 
     - name: Build
-      run: go build -v ./... 
-
-    - run: ls -R
+      run: go build ./test-app
 
     - name: Upload artifact
       uses:  actions/upload-artifact@v2
