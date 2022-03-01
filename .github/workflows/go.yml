@@ -33,13 +33,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
-    - name: Display structure of downloaded files
-      run: ls -R
-      
-    - name: Get artifact
-      uses: actions/download-artifact@v2
-      with:
-        name: test-app 
+    # - name: Display structure of downloaded files
+    #   run: ls -R
+
+    # - name: Get artifact
+    #   uses: actions/download-artifact@v2
+    #   with:
+    #     name: test-app 
 
     - name: Create a release
       run: hub release create -a test-app -m InitialRelease $GITHUB_RUN_ID 
