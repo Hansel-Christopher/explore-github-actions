@@ -19,13 +19,13 @@ jobs:
         go-version: 1.17
 
     - name: Build
-      run: go build ./test-app
+      run: go build -o $RUNNER_TEMP/test-app
 
     - name: Upload artifact
       uses:  actions/upload-artifact@v2
       with:
         name: test-app
-        path: ./test-app                
+        path: $RUNNER_TEMP/test-app
 
   release:
     runs-on: ubuntu-latest
