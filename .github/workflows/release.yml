@@ -8,7 +8,7 @@ on:
 jobs:
 
   create-build-artifact:
-    uses ./.github/workflows/go.yml
+    uses: ./.github/workflows/go.yml
 
   release:
     runs-on: ubuntu-latest
