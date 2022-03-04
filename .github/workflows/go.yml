@@ -29,13 +29,13 @@ jobs:
       run: |
         export GOOS=darwin
         export GOARCH=amd64
-        go build -o $RUNNER_TEMP/artifacts/${{ env.artifact_name }}-macos
+        go build -o $RUNNER_TEMP/artifacts/macos/${{ env.artifact_name }}
     
     - name: Build linux
       run: |
         export GOOS=linux
         export GOARCH=amd64
-        go build -o $RUNNER_TEMP/artifacts/${{ env.artifact_name }}-linux
+        go build -o $RUNNER_TEMP/artifacts/linux/${{ env.artifact_name }}
 
     - run: ls -R $RUNNER_TEMP/artifacts/
 
